@@ -1,4 +1,5 @@
 import ListGroup from "./components/ListGroup";
+import Alert from "./components/Alert";
 
 function App() {
   let items = ["New Delhi", "Bihar", "Uttar Pradesh", "Mumbai", "Chennai"];
@@ -10,6 +11,9 @@ function App() {
   return (
     <div>
       <ListGroup items={items} heading="Cities" onSelectItem={handleSelectItem} />
+      <Alert>
+        Hello <strong>Nitish </strong>
+      </Alert>
     </div>
   );
 }
