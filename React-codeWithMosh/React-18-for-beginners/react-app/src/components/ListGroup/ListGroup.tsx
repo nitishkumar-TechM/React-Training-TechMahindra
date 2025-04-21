@@ -1,8 +1,23 @@
 import { useState } from "react";
-import styles from './ListGroup.module.css';
+// import styles from './ListGroup.css';
+import styled from 'styled-components';
 
 // { items: [], heading: string }
 // Interface in TypeScript
+
+const List = styled.ul`
+  list-style: none;
+  padding: 0;
+`;
+
+interface ListItemProps {
+  $active: boolean;
+}
+
+const ListItem = styled.li<ListItemProps>`
+  padding: 5px 0;
+  background: ${ props => props.$active? 'blue' : undefined};
+`
 
 interface Props {
     items: string[];
@@ -19,20 +34,22 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
       <>
         <h1>{heading}</h1>
         {items.length === 0 && <p>No item found</p>}
-        <ul className={[styles.listGroup, styles.container].join(' ')}>
+        {/* <ul className='list-group'> */}
+        <List>
           {items.map((item, index) => (
-            <li
+            <ListItem
+              $active={index === selectedIndex}
               key={index}
-              className={ selectedIndex === index ? 'list-group-item active' : 'list-group-item'}
               onClick={ () => {
                 setSelectedIndex(index);
                 onSelectItem(item);
             } }
             >
               {item}
-            </li>
+            </ListItem>
           ))}
-        </ul>
+        {/* </ul> */}
+        </List>
       </>
     );
 }
