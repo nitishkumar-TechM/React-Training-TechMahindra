@@ -5,6 +5,7 @@ import AlertDismiss from "./components/AlertDismiss";
 import { useState } from "react";
 import './App.css';
 import { BsCalendar2Date } from "react-icons/bs";
+import Like from "./components/Like";
 
 function App() {
   const [alertVisible, setAlertVisible] = useState(false);
@@ -33,11 +34,11 @@ function App() {
       {alertVisible && <AlertDismiss onClose={() => setAlertVisible(false)}>
         Hello Nitish, from <strong>Tech Mahindra</strong>
       </AlertDismiss>}
-      <Button onClick={handleClickButton} color="danger">
+      <Button onClick={handleClickButton} color="primary">
         My Button
       </Button>
       <div className="pad-man"><BsCalendar2Date color="red" size="40"/></div>
-      
+      <Like onClick={() => console.log('Clicked')}/>
     </div>
   );
 }
