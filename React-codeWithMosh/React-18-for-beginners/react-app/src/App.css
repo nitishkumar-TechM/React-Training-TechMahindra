@@ -1,3 +1,7 @@
 .list-group {
     background-color: red;
 }
+
+.pad-man {
+    padding: 10px;
+}

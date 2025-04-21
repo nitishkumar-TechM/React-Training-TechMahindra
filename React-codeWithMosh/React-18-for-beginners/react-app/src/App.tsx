@@ -4,6 +4,7 @@ import Button from "./components/Button";
 import AlertDismiss from "./components/AlertDismiss";
 import { useState } from "react";
 import './App.css';
+import { BsCalendar2Date } from "react-icons/bs";
 
 function App() {
   const [alertVisible, setAlertVisible] = useState(false);
@@ -35,6 +36,8 @@ function App() {
       <Button onClick={handleClickButton} color="danger">
         My Button
       </Button>
+      <div className="pad-man"><BsCalendar2Date color="red" size="40"/></div>
+      
     </div>
   );
 }
