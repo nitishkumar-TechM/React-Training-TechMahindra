@@ -3,6 +3,7 @@ import Alert from "./components/Alert";
 import Button from "./components/Button";
 import AlertDismiss from "./components/AlertDismiss";
 import { useState } from "react";
+import './App.css';
 
 function App() {
   const [alertVisible, setAlertVisible] = useState(false);
