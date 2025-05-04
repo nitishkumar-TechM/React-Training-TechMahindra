@@ -15,9 +15,16 @@ import { FormEvent, useState } from "react";
 // should always get their value from the state variable, 
 // and any changes to the input fields should update the state variable. 
 // This way, the state variable and the input fields will always be in sync.
+interface Person {
+  name: string;
+  age: string | number;
+}
 
 function Form() {
-  const [person, setPerson] = useState({
+  
+
+  
+  const [person, setPerson] = useState<Person>({
     name: "",
     age: '',
   });
@@ -50,10 +57,11 @@ function Form() {
           </label>
           <input
             id="age"
-            onChange={(event) =>
-              setPerson({ ...person, age: parseInt(event.target.value) })
-            }
-            value={person.age}
+            onChange={(event) => {
+              const value = event.target.value;
+              setPerson({ ...person, age: value ? parseInt(value) : ""  })
+            }}
+            value={person.age !== null ? person.age : ""}
             type="number"
             className="form-control"
           />
