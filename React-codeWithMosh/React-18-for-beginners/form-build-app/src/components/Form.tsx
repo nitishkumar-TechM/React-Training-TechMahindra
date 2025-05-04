@@ -5,6 +5,10 @@ import { FormEvent, useState } from "react";
 // called 'person', so it is possible that these sources get out of sync.
 // To solve this problem we should make react a single source of truth
 // set the value attribute to person.name and person.age respectively.
+// Now we are referring this input field as a controlled component.
+// Beacuse its state is entirly controlled by 'react' this means that t
+// the value of this input field is not managed by DOM but instead
+// it stored and updated in a component state.
 
 // Out of Sync: Sometimes, the value in the input field and the value in
 // the state variable 'person' might not match.
