@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FieldValues, useForm } from "react-hook-form";
 
 // Controlled Components: All input fields have their value prop to maintain
 // their own state, but in this implementation we also have state variable 
@@ -19,41 +19,27 @@ import { FormEvent, useState } from "react";
 // should always get their value from the state variable, 
 // and any changes to the input fields should update the state variable. 
 // This way, the state variable and the input fields will always be in sync.
-interface Person {
-  name: string;
-  age: string | number;
-}
 
 function Form() {
+  const { register, handleSubmit, formState: { errors} } = useForm();  
+
+  const onSubmit = (data: FieldValues) => console.log(data);
   
-
-  
-  const [person, setPerson] = useState<Person>({
-    name: "",
-    age: '',
-  });
-
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    console.log(person);
-  };
-
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <label htmlFor="name" className="form-lebel">
             Name
           </label>
           <input
             id="name"
-            onChange={(event) =>
-              setPerson({ ...person, name: event.target.value })
-            }
-            value={person.name}
+            { ...register('name', { required: true, minLength: 3})}
             type="text"
             className="form-control"
           />
+          { errors.name?.type === 'required' && <p className="text-danger">The name field is required.</p>}
+          { errors.name?.type === 'minLength' && <p className="text-danger">The name must be at least 3 characters.</p>}
         </div>
         <div className="mb-3">
           <label htmlFor="age" className="form-label">
@@ -61,11 +47,7 @@ function Form() {
           </label>
           <input
             id="age"
-            onChange={(event) => {
-              const value = event.target.value;
-              setPerson({ ...person, age: value ? parseInt(value) : ""  })
-            }}
-            value={person.age !== null ? person.age : ""}
+            { ...register('age')}
             type="number"
             className="form-control"
           />
