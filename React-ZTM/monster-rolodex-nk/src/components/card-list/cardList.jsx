@@ -7,7 +7,7 @@ const CardList = ({ monsters }) => {
     <div className="card-list">
         {
             monsters.map(({name, email, id}, idx) => {
-                return (
+                return   (
                     <Card key={`${name}-${idx}`} name={name} email={email} id={id}/>
                 )
             })
